@@ -1,16 +1,76 @@
-import { dirname } from "path";
-import { fileURLToPath } from "url";
-import { FlatCompat } from "@eslint/eslintrc";
+import nextPlugin from "@next/eslint-plugin-next";
+import tseslint from "@typescript-eslint/eslint-plugin";
+import tsParser from "@typescript-eslint/parser";
+import reactHooksPlugin from "eslint-plugin-react-hooks";
+import prettierConfig from "eslint-config-prettier";
+import importPlugin from "eslint-plugin-import";
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
+export default [
+  // Next.js core-web-vitals rules
+  {
+    files: ["**/*.{js,jsx,ts,tsx}"],
+    plugins: { "@next/next": nextPlugin },
+    rules: {
+      ...nextPlugin.configs["core-web-vitals"].rules,
+      "@next/next/no-img-element": "off",
+    },
+  },
+  // TypeScript recommended rules
+  {
+    files: ["**/*.{ts,tsx}"],
+    plugins: { "@typescript-eslint": tseslint },
+    languageOptions: {
+      parser: tsParser,
+      parserOptions: {
+        project: true,
+      },
+    },
+    rules: {
+      ...tseslint.configs.recommended.rules,
+      "@typescript-eslint/no-unused-vars": ["error"],
+    },
+  },
+  // React Hooks rules
+  {
+    files: ["**/*.{js,jsx,ts,tsx}"],
+    plugins: { "react-hooks": reactHooksPlugin },
+    rules: {
+      "react-hooks/rules-of-hooks": "error",
+      "react-hooks/exhaustive-deps": "warn",
+    },
+  },
+  {
+    files: ["**/*.{ts,tsx,js,jsx}"],
+    plugins: { import: importPlugin },
+    rules: {
+      "import/no-restricted-paths": [
+        "error",
+        {
+          zones: [
+            { target: "./src/app", from: "./src/widgets" },
+            { target: "./src/app", from: "./src/features" },
+            { target: "./src/app", from: "./src/entities" },
+            { target: "./src/app", from: "./src/shared" },
 
-const compat = new FlatCompat({
-  baseDirectory: __dirname,
-});
+            { target: "./src/widgets", from: "./src/features" },
+            { target: "./src/widgets", from: "./src/entities" },
+            { target: "./src/widgets", from: "./src/shared" },
 
-const eslintConfig = [
-  ...compat.extends("next/core-web-vitals", "next/typescript"),
+            { target: "./src/features", from: "./src/entities" },
+            { target: "./src/features", from: "./src/shared" },
+
+            { target: "./src/entities", from: "./src/shared" },
+          ],
+        },
+      ],
+    },
+    settings: {
+      "import/resolver": {
+        typescript: true,
+        node: true,
+      },
+    },
+  },
+  // Disable rules conflicting with Prettier
+  prettierConfig,
 ];
-
-export default eslintConfig;
