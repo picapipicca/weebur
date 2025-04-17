@@ -47,19 +47,24 @@ export default [
         "error",
         {
           zones: [
-            { target: "./src/app", from: "./src/widgets" },
-            { target: "./src/app", from: "./src/features" },
-            { target: "./src/app", from: "./src/entities" },
-            { target: "./src/app", from: "./src/shared" },
-
-            { target: "./src/widgets", from: "./src/features" },
-            { target: "./src/widgets", from: "./src/entities" },
-            { target: "./src/widgets", from: "./src/shared" },
-
-            { target: "./src/features", from: "./src/entities" },
-            { target: "./src/features", from: "./src/shared" },
-
-            { target: "./src/entities", from: "./src/shared" },
+            {
+              target: "./src/shared",
+              from: [
+                "./src/entities",
+                "./src/features",
+                "./src/widgets",
+                "./src/app",
+              ],
+            },
+            +(+(+{
+              target: "./src/entities",
+              from: ["./src/features", "./src/widgets", "./src/app"],
+            })),
+            +(+(+{
+              target: "./src/features",
+              from: ["./src/widgets", "./src/app"],
+            })),
+            +(+(+{ target: "./src/widgets", from: ["./src/app"] })),
           ],
         },
       ],
