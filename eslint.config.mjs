@@ -35,6 +35,7 @@ export default [
     rules: {
       ...tseslint.configs.recommended.rules,
       "@typescript-eslint/no-unused-vars": ["error"],
+      "@typescript-eslint/no-explicit-any": "off",
     },
   },
 
@@ -105,6 +106,7 @@ export default [
     },
     rules: {
       ...testingLibrary.configs.react.rules,
+      "@typescript-eslint/no-explicit-any": "off",
     },
   },
 

@@ -2,7 +2,7 @@ import React from "react";
 import { render, screen, waitFor } from "@testing-library/react";
 import ProductList from "@/features/products/components/ProductList";
 import { useViewMode } from "@/features/products/hooks/useViewMode";
-import { getProductList } from "@/features/products/hooks/useProductQuery";
+import { useProductList } from "@/features/products/hooks/useProductQuery";
 import { useSearchController } from "@/shared/hooks/useSearchController";
 
 jest.mock("@/features/products/hooks/useViewMode");
@@ -13,7 +13,7 @@ jest.mock("@/shared/hooks/useSearchController", () => ({
 
 describe("ProductList component", () => {
   const mockUseViewMode = useViewMode as jest.Mock;
-  const mockGetProductList = getProductList as jest.Mock;
+  const mockGetProductList = useProductList as jest.Mock;
   const mockUseSearchController = useSearchController as jest.Mock;
 
   const mockProducts = Array.from({ length: 20 }, (_, i) => ({

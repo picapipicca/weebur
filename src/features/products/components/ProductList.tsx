@@ -2,7 +2,7 @@
 
 import React, { useRef, useEffect } from "react";
 import { useViewMode } from "../hooks/useViewMode";
-import { getProductList } from "../hooks/useProductQuery";
+import { useProductList } from "../hooks/useProductQuery";
 import { useSearchController } from "@/shared/hooks/useSearchController";
 import { SearchController } from "@/shared/lib/searchController";
 
@@ -25,7 +25,7 @@ const ProductList = () => {
     fetchNextPage,
     hasNextPage,
     isFetchingNextPage,
-  } = getProductList({
+  } = useProductList({
     limit: 20,
     skip: 0,
     q: controller.q || "",

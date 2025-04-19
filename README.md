@@ -83,11 +83,3 @@ npm run build
 # 4. 프로덕션 서버 실행
 
 npm run start
-
-# 5. 린트 검사
-
-npm run lint
-
-# 6. 테스트 실행 (watch 모드)
-
-npm run test

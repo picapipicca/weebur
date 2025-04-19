@@ -25,7 +25,7 @@ const Input = ({
   const enterSearch = (e: KeyboardEvent) => {
     const key = e.key || e.keyCode;
     if ((key === "Enter" || key === 13) && submitCondition) {
-      submitHandler && submitHandler();
+      submitHandler?.();
     }
   };
 

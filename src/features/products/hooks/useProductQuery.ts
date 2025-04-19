@@ -5,7 +5,7 @@ import { ProductsListRequest } from "../api/types";
 
 export const PAGE_SIZE = 20;
 
-export const getProductList = (req: ProductsListRequest) =>
+export const useProductList = (req: ProductsListRequest) =>
   useInfiniteQuery({
     queryKey: PRODUCT.LIST(req),
     queryFn: ({ pageParam = 0 }) =>
