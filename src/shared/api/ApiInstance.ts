@@ -8,7 +8,6 @@ export const ApiInstance = axios.create({
 ApiInstance.interceptors.response.use(
   (res) => res,
   (err) => {
-    // 공통 에러 핸들링
     return Promise.reject(err);
   }
 );

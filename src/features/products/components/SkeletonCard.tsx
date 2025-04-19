@@ -1,3 +1,5 @@
+import React from "react";
+
 type SkeletonProps = {
   variant: "list" | "grid";
 };
@@ -5,6 +7,7 @@ type SkeletonProps = {
 const SkeletonCard = ({ variant }: SkeletonProps) => {
   return (
     <div
+      data-testid="skeleton-card"
       className={`bg-white rounded-lg border border-gray-200 p-4 shadow-sm animate-pulse ${
         variant === "list" ? "flex md:flex-row gap-4" : "flex flex-col"
       }`}

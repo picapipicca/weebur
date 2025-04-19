@@ -1,3 +1,4 @@
+import React from "react";
 import { SearchController } from "@/shared/lib/searchController";
 import { useSearchController } from "@/shared/hooks/useSearchController";
 
@@ -21,7 +22,7 @@ const SearchResultTags = () => {
       {tags.map((tag, i) => (
         <span
           key={i}
-          className="px-3 py-1 rounded-full bg-[#007aff]/10 text-[#007aff] text-sm font-medium"
+          className="px-3 py-1 rounded-full bg-primary/10 text-primary text-sm font-medium"
         >
           {tag.label}
         </span>

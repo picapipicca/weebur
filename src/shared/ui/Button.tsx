@@ -18,15 +18,15 @@ const buttonSizeObj: { [key: string]: string } = {
 };
 
 const buttonTypeObj: { [key: string]: string } = {
-  primary: "bg-[#007aff] text-white border-[#007aff] shadow-button",
-  default: "bg-[#F1EFEC]",
+  primary: "bg-primary text-white border-primary shadow-button",
+  default: "bg-default",
   none: "",
 };
 
 const buttonHoverObj: { [key: string]: string } = {
   primary:
-    "hover:bg-[#0F5AF1FF] hover:border-[#0F5AF1FF] hover:text-shadow-none cursor-pointer",
-  default: "hover:bg-[#E4E0E1] cursor-pointer",
+    "hover:bg-hover_primary hover:border-hover_primary hover:text-shadow-none cursor-pointer",
+  default: "hover:bg-hover_default cursor-pointer",
   none: "",
 };
 
@@ -41,7 +41,8 @@ const Button = ({
 }: IButtonProps) => {
   return (
     <button
-      className={`transition-button font-sans border-none inline-block no-underline disabled:opacity-30
+      role="button"
+      className={`transition-button border-none inline-block no-underline disabled:opacity-30
 				${isRounded ? "rounded-base" : ""}
 				${buttonTypeObj[buttonType]} 
 				${isDisabled ? "" : buttonHoverObj[buttonType]}

@@ -1,24 +1,31 @@
+// eslint.config.mjs
 import nextPlugin from "@next/eslint-plugin-next";
 import tseslint from "@typescript-eslint/eslint-plugin";
 import tsParser from "@typescript-eslint/parser";
 import reactHooksPlugin from "eslint-plugin-react-hooks";
 import prettierConfig from "eslint-config-prettier";
 import importPlugin from "eslint-plugin-import";
+import testingLibrary from "eslint-plugin-testing-library";
 
 export default [
   // Next.js core-web-vitals rules
   {
     files: ["**/*.{js,jsx,ts,tsx}"],
-    plugins: { "@next/next": nextPlugin },
+    plugins: {
+      "@next/next": nextPlugin,
+    },
     rules: {
       ...nextPlugin.configs["core-web-vitals"].rules,
       "@next/next/no-img-element": "off",
     },
   },
+
   // TypeScript recommended rules
   {
     files: ["**/*.{ts,tsx}"],
-    plugins: { "@typescript-eslint": tseslint },
+    plugins: {
+      "@typescript-eslint": tseslint,
+    },
     languageOptions: {
       parser: tsParser,
       parserOptions: {
@@ -30,18 +37,25 @@ export default [
       "@typescript-eslint/no-unused-vars": ["error"],
     },
   },
+
   // React Hooks rules
   {
     files: ["**/*.{js,jsx,ts,tsx}"],
-    plugins: { "react-hooks": reactHooksPlugin },
+    plugins: {
+      "react-hooks": reactHooksPlugin,
+    },
     rules: {
       "react-hooks/rules-of-hooks": "error",
       "react-hooks/exhaustive-deps": "warn",
     },
   },
+
+  // Import path restriction and resolution
   {
     files: ["**/*.{ts,tsx,js,jsx}"],
-    plugins: { import: importPlugin },
+    plugins: {
+      import: importPlugin,
+    },
     rules: {
       "import/no-restricted-paths": [
         "error",
@@ -56,15 +70,18 @@ export default [
                 "./src/app",
               ],
             },
-            +(+(+{
+            {
               target: "./src/entities",
               from: ["./src/features", "./src/widgets", "./src/app"],
-            })),
-            +(+(+{
+            },
+            {
               target: "./src/features",
               from: ["./src/widgets", "./src/app"],
-            })),
-            +(+(+{ target: "./src/widgets", from: ["./src/app"] })),
+            },
+            {
+              target: "./src/widgets",
+              from: ["./src/app"],
+            },
           ],
         },
       ],
@@ -76,6 +93,21 @@ export default [
       },
     },
   },
+
+  // Testing Library rules for test files only
+  {
+    files: [
+      "**/__tests__/**/*.{js,jsx,ts,tsx}",
+      "**/*.{spec,test}.{js,jsx,ts,tsx}",
+    ],
+    plugins: {
+      "testing-library": testingLibrary,
+    },
+    rules: {
+      ...testingLibrary.configs.react.rules,
+    },
+  },
+
   // Disable rules conflicting with Prettier
   prettierConfig,
 ];

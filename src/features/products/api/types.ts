@@ -13,18 +13,9 @@ export interface ProductListResponse {
     description: string;
     thumbnail: string;
     rating: number;
-    reviews: number;
+    reviews: any[];
   }[];
   total: number;
   skip: number;
   limit: number;
-}
-
-export interface Product {
-  id: number;
-  title: string;
-  description: string;
-  thumbnail: string;
-  rating: number;
-  reviews: number;
 }

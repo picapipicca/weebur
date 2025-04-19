@@ -1,6 +1,4 @@
 export class SearchController {
-  // limit?: number;
-  // skip?: number;
   sortBy: "rating" | "";
   q: string;
   order: "desc" | undefined;
@@ -10,8 +8,6 @@ export class SearchController {
     this.order = order;
     this.sortBy = sortBy;
     this.q = q;
-    // this.limit = limit;
-    // this.skip = skip;
   }
 
   init(searchParams: URLSearchParams) {
@@ -42,9 +38,6 @@ export class SearchController {
 
   getResult() {
     const params = new URLSearchParams();
-
-    // params.set("limit", String(this.limit));
-    // params.set("skip", String(this.skip));
 
     if (this.q) params.set("q", this.q);
     if (this.sortBy) params.set("orderBy", this.sortBy);
