@@ -4,7 +4,7 @@ import {
   type PrefetchInfiniteOptions,
   isPrefetchOptions,
   isPrefetchInfiniteOptions,
-} from "./type";
+} from "./prefetchType";
 import {
   HydrationBoundary,
   QueryClient,
