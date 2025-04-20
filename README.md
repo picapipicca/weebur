@@ -1,4 +1,4 @@
-### 배포주소 : [과제 배포 url](weebur-coding-test.vercel.app){:target="\_blank" rel="noopener"}
+### 배포주소 : <a href="weebur-coding-test.vercel.app" target="_blank">과제 배포 url</a>
 
 ### 📁 프로젝트 폴더 구조
 
