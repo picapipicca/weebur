@@ -1,4 +1,4 @@
-### 배포주소 : weebur-coding-test.vercel.app
+### 배포주소 : (위버 과제 배포 url)[weebur-coding-test.vercel.app]
 
 ### 📁 프로젝트 폴더 구조
 
