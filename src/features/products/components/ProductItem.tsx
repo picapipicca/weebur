@@ -40,9 +40,7 @@ const ProductItem = ({
           width={150}
           height={150}
           sizes={
-            viewMode === "list"
-              ? "(min-width: 1024px) 150px, 30vw"
-              : "(min-width: 1024px) 25vw, 50vw"
+            viewMode === "list" ? "150px" : "(min-width: 1024px) 23vw, 20vw"
           }
         />
       </div>
